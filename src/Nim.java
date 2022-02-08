@@ -55,13 +55,15 @@ public class Nim
         name[0]=getName();
         name[1]=getName();
 
+
         while(totalSticks > 1) {
             if (player==0)
                 player=1;
             else player=0;
             totalSticks = playGame(numSticks, totalSticks, name[player]);
         }
-        printWinner(name[player], numSticks);
+        //printWinner(name[player], numSticks);
+
     }
 
     public static void changeJOP() {
@@ -101,11 +103,25 @@ public class Nim
 
     public static String getName()
     {
-        for (int i = 0; i < 2; i++)
-        {
-            JOptionPane.showInputDialog("");
-        }
+
+        String name = JOptionPane.showInputDialog("What is your name: ");
+        return name;
     }
+
+    public static int playGame(int[] numSticks, int totalSticks, String name)
+    {
+        int nulll = 0;
+        String board = "";
+        board += ("Row 1: "+ "| " + "\n");
+        board += ("Row 2: "+ "| | | " + "\n");
+        board += ("Row 3: "+ "| | | | | " + "\n");
+        board += ("Row 4: "+ "| | | | | | | " + "\n");
+        board += ("OK " + name + " what row do you want to use? ");
+
+        JOptionPane.showMessageDialog(null, board);
+        return nulll;
+    }
+
 
 
 }
