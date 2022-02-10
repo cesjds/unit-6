@@ -1,6 +1,6 @@
 /********************************************************************
  Written by: Yoav Amit
- Checked by:
+ Checked by: Ari Goldberg
 
 
  ASSIGNMENT: Write a program that lets the user play Nim with
@@ -19,8 +19,8 @@
  showInputDialog to input how many sticks he/she wants to remove.
  You should error check the number of sticks - it can't be less than
  one or greater than the number of sticks in the row.
- Why do you have to return the totalSticks?  _______________________
- Why don't you have to return the array?  __________________________
+ Why do you have to return the totalSticks? Because it needs to check that it's more than 1
+ Why don't you have to return the array? Because it doesn't need to be checked. It's data that stays in the method
 
  - In your printWinner method you should print the board showing
  the one remaining stick, the winners name and a nice message.
@@ -62,7 +62,7 @@ public class Nim
             else player=0;
             totalSticks = playGame(numSticks, totalSticks, name[player]);
         }
-        //printWinner(name[player], numSticks);
+        printWinner(name[player], numSticks);
 
     }
 
@@ -85,8 +85,8 @@ public class Nim
         UIManager.put("OptionPane.background",new Color(58, 130, 152));
 
         // Buttons at bottom
-        UIManager.put("Button.background",new Color(211, 211, 211));
-        UIManager.put("Button.foreground", new Color(204, 204, 204));
+        UIManager.put("Button.background",new Color(60, 183, 222));
+        UIManager.put("Button.foreground", new Color(59, 189, 215));
         UIManager.put("Button.font", new FontUIResource	(new Font("Tempus Sans ITC", Font.BOLD, 14)));
     }
 
@@ -112,16 +112,55 @@ public class Nim
     {
         int nulll = 0;
         String board = "";
-        board += ("Row 1: "+ "| " + "\n");
-        board += ("Row 2: "+ "| | | " + "\n");
-        board += ("Row 3: "+ "| | | | | " + "\n");
-        board += ("Row 4: "+ "| | | | | | | " + "\n");
-        board += ("OK " + name + " what row do you want to use? ");
 
-        JOptionPane.showMessageDialog(null, board);
-        return nulll;
+        for(int r = 1; r <= 4; r++)
+        {
+            board += ("Row " + r + ": ");
+            for(int i = 0; i < numSticks[r-1]; i++)
+            {
+                board += "| ";
+            }
+            board += ("\n");
+        }
+        board += "\nOK " + name + ", what row do you want to use?";
+
+        String[] buttons = {"Row 1",
+                            "Row 2",
+                            "Row 3",
+                            "Row 4"};
+
+        int choice=JOptionPane.showOptionDialog
+                (null, board, "Nim",
+                        0, 3, null, buttons, null);
+
+        int sticks = 0;
+
+        do{
+            sticks = Integer.parseInt(JOptionPane.showInputDialog("How many sticks do you want to remove?"));
+        }while((sticks <= 0) || (sticks > numSticks[choice]));
+
+        numSticks[choice] = numSticks[choice] - sticks;
+        totalSticks = totalSticks - sticks;
+
+        return totalSticks;
     }
 
+    public static void printWinner(String name, int[] numSticks)
+    {
+        String board = "";
 
+        for(int r = 1; r <= 4; r++)
+        {
+            board += ("Row " + r + ": ");
+            for(int i = 0; i < numSticks[r-1]; i++)
+            {
+                board += "| ";
+            }
+            board += ("\n");
+        }
 
+        board += name + " is the winner!";
+
+        JOptionPane.showMessageDialog(null, board);
+    }
 }
