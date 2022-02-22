@@ -68,26 +68,26 @@ public class Nim
 
     public static void changeJOP() {
         // The font of the message text
-        UIManager.put("Label.font", new FontUIResource(new Font("Tempus Sans ITC", Font.BOLD, 58)));
+        UIManager.put("Label.font", new FontUIResource(new Font("SF Pro", Font.BOLD, 58)));
         // The color of the message text
         UIManager.put("OptionPane.messageForeground",new Color(0, 0, 0));
 
         // color for text field (where you are inputting data)
         UIManager.put("TextField.background", Color.white);
         // font for message in text field
-        UIManager.put("TextField.font", new FontUIResource(new Font("Dialog", Font.BOLD, 24)));
+        UIManager.put("TextField.font", new FontUIResource(new Font("SF Pro", Font.BOLD, 24)));
         // color for message in text field
         UIManager.put("TextField.foreground", Color.black);
 
         // The color of the panel
-        UIManager.put("Panel.background",new Color(45, 130, 184));
+        UIManager.put("Panel.background",new Color(162, 162, 167));
         // The color around the outside of the panel
         UIManager.put("OptionPane.background",new Color(58, 130, 152));
 
         // Buttons at bottom
         UIManager.put("Button.background",new Color(60, 183, 222));
         UIManager.put("Button.foreground", new Color(59, 189, 215));
-        UIManager.put("Button.font", new FontUIResource	(new Font("Tempus Sans ITC", Font.BOLD, 14)));
+        UIManager.put("Button.font", new FontUIResource	(new Font("SF Pro", Font.BOLD, 14)));
     }
 
     public static void directions(){
